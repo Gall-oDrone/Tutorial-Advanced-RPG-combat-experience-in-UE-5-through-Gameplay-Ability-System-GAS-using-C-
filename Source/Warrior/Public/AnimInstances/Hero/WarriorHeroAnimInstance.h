@@ -16,7 +16,7 @@ class WARRIOR_API UWarriorHeroAnimInstance : public UWarriorCharacterAnimInstanc
 	GENERATED_BODY()
 	
 	virtual void NativeInitializeAnimation() override;
-	virtual void NativeThreadSafeUpdateAnimation(float DeltaSeconds);
+	virtual void NativeThreadSafeUpdateAnimation(float DeltaSeconds) override;
 
 protected:
 	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = "AnimData|References")
