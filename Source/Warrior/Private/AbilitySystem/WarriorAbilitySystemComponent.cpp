@@ -5,7 +5,7 @@
 
 void UWarriorAbilitySystemComponent::OnAbilityInputPressed(const FGameplayTag& InInputTag)
 {
-	if (InInputTag.IsValid())
+	if (!InInputTag.IsValid())
 	{
 		return;
 	}
