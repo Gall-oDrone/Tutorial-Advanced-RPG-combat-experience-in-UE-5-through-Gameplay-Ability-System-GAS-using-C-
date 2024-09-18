@@ -16,7 +16,7 @@ void UDataAsset_HeroStartUpData::GiveToAbilitySystemComponent(UWarriorAbilitySys
 
     for (const FWarriorHeroAbilitySet& AbilitySet : HeroStartUpAbilitySets)
     {
-        if (AbilitySet.IsValid()) continue;
+        if (!AbilitySet.IsValid()) continue;
 
         FGameplayAbilitySpec AbilitySpec(AbilitySet.AbilityToGrant);
         AbilitySpec.SourceObject = InASCToGive->GetAvatarActor();
