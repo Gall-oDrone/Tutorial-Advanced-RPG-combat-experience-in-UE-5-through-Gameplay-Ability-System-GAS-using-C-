@@ -92,14 +92,14 @@ void UGEExecCalc_DamageTaken::Execute_Implementation(const FGameplayEffectCustom
 
 	float TargetDefensePower = 0.f;
 	ExecutionParams.AttemptCalculateCapturedAttributeMagnitude(GetWarriorDamageCapture().DefensePowerDef, EvaluateParameters, TargetDefensePower);
-	Debug::Print(TEXT("TargetDefensePower"), TargetDefensePower);
+	//Debug::Print(TEXT("TargetDefensePower"), TargetDefensePower);
 
 	if (UsedLightAttackComboCount != 0)
 	{
 		const float DamageIncreasePercentLight = (UsedLightAttackComboCount - 1) * 0.05 + 1.f;
 
 		BaseDamage *= DamageIncreasePercentLight;
-		Debug::Print(TEXT("ScaledBaseDamageLight"), BaseDamage);
+		//Debug::Print(TEXT("ScaledBaseDamageLight"), BaseDamage);
 	}
 
 	if (UsedHeavyAttackComboCount != 0)
@@ -107,11 +107,11 @@ void UGEExecCalc_DamageTaken::Execute_Implementation(const FGameplayEffectCustom
 		const float DamageIncreasePercentHeavy = UsedHeavyAttackComboCount * 0.15f + 1.f;
 
 		BaseDamage *= DamageIncreasePercentHeavy;
-		Debug::Print(TEXT("ScaledBaseDamageHeavy"), BaseDamage);
+		//Debug::Print(TEXT("ScaledBaseDamageHeavy"), BaseDamage);
 	}
 
 	const float FinalDamageDone = BaseDamage * SourceAttackPower / TargetDefensePower;
-	Debug::Print(TEXT("FinalDamageDone"), FinalDamageDone);
+	//Debug::Print(TEXT("FinalDamageDone"), FinalDamageDone);
 
 	if (FinalDamageDone > 0.f)
 	{
