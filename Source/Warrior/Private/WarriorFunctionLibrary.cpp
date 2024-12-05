@@ -105,19 +105,19 @@ FGameplayTag UWarriorFunctionLibrary::ComputeHitReactDirectionTag(AActor* InAtta
         OutAngleDifference *= -1.f;
     }
 
-    if (OutAngleDifference >= 45.f && OutAngleDifference <= 45.f)
+    if (OutAngleDifference >=-45.f && OutAngleDifference <=45.f)
     {
         return WarriorGameplayTags::Shared_Status_HitReact_Front;
     }
-    else if (OutAngleDifference < -45.f && OutAngleDifference >= -135.f)
+    else if (OutAngleDifference <-45.f && OutAngleDifference >=-135.f)
     {
         return WarriorGameplayTags::Shared_Status_HitReact_Left;
     }
-    else if (OutAngleDifference < -135.f || OutAngleDifference > 135.f)
+    else if (OutAngleDifference <-135.f || OutAngleDifference >135.f)
     {
         return WarriorGameplayTags::Shared_Status_HitReact_Back;
     }
-    else if (OutAngleDifference > -45.f && OutAngleDifference <= 135.f)
+    else if (OutAngleDifference >-45.f && OutAngleDifference <=135.f)
     {
         return WarriorGameplayTags::Shared_Status_HitReact_Right;
     }
