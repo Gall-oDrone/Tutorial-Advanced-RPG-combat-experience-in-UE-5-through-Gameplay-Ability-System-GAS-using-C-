@@ -61,6 +61,8 @@ void UHeroGameplayAbility_TargetLock::OnTargetLockTick(float DeltaTime)
 			CurrentLockedActor->GetActorLocation()
 		);
 
+		LookAtRot -= FRotator(TargetLockCameraOffsetDistance, 0.f, 0.f);
+
 		const FRotator CurrentControlRot = GetHeroControllerFromActorInfo()->GetControlRotation();
 		const FRotator TargetRot = FMath::RInterpTo(CurrentControlRot, LookAtRot, DeltaTime, TargetLockRotationInterpSpeed);
 
