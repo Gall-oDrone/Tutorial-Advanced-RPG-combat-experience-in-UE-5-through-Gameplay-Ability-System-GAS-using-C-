@@ -24,5 +24,5 @@ void UEnemyUIComponent::RemoveEnemyDrawnWidgetsIfAny()
 		}
 	}
 
-	EnemyDrawnWidgets.Emtpy();
+	EnemyDrawnWidgets.Empty();
 }
