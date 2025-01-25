@@ -51,4 +51,5 @@ private:
 	FDelegateHandle DelegateHandle;
 
 	void OnGameplayEventReceived(const FGameplayEventData* OnPayload);
+	void OnEnemyClassLoaded();
 };
