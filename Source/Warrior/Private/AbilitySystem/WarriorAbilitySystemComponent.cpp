@@ -16,22 +16,15 @@ void UWarriorAbilitySystemComponent::OnAbilityInputPressed(const FGameplayTag& I
 	{
 		if (!AbilitySpec.DynamicAbilityTags.HasTagExact(InInputTag)) continue;
 
-		if (InInputTag.MatchesTag(WarriorGameplayTags::InputTag_Toogleable))
+
+		if (InInputTag.MatchesTag(WarriorGameplayTags::InputTag_Toogleable) && AbilitySpec.IsActive())
 		{
-			if (AbilitySpec.IsActive())
-			{
-				CancelAbilityHandle(AbilitySpec.Handle);
-			}
-			else
-			{
-				TryActivateAbility(AbilitySpec.Handle);
-			}
+			CancelAbilityHandle(AbilitySpec.Handle);
 		}
 		else
 		{
 			TryActivateAbility(AbilitySpec.Handle);
 		}
-		
 	}
 }
 
