@@ -69,6 +69,9 @@ private:
 	int32 TrySpawnWaveEnemies();
 	bool ShouldKeepSpawnEnemies() const;
 
+	UFUNCTION()
+	void OnEnemyDestroy(AActor* DestroyedActor);
+
 	UPROPERTY()
 	EWarriorSurvivalGameModeState CurrentSurvivalGameModeState;
 

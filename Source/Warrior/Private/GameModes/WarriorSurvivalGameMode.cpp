@@ -98,6 +98,8 @@ void AWarriorSurvivalGameMode::PreLoadNextWaveEnemies()
 		return;
 	}
 
+	PreLoadedEnemyClassMap.Empty();
+
 	for (const FWarriorEnemyWaveSpawnerInfo& SpawnerInfo : GetCurrentWaveSpawnerTableRow()->EnemyWaveSpawnerDefinitions)
 	{
 		if (SpawnerInfo.SoftEnemyClassToSpawn.IsNull()) continue;
@@ -110,7 +112,7 @@ void AWarriorSurvivalGameMode::PreLoadNextWaveEnemies()
 					if (UClass* LoadedEnemyClass = SpawnerInfo.SoftEnemyClassToSpawn.Get())
 					{
 						PreLoadedEnemyClassMap.Emplace(SpawnerInfo.SoftEnemyClassToSpawn, LoadedEnemyClass);
-						Debug::Print(LoadedEnemyClass->GetName() + TEXT(" is loaded"));
+						/*Debug::Print(LoadedEnemyClass->GetName() + TEXT(" is loaded"));*/
 					}
 				}
 			)
@@ -165,6 +167,8 @@ int32 AWarriorSurvivalGameMode::TrySpawnWaveEnemies()
 
 			if (SpawnEnemy)
 			{
+				SpawnEnemy->OnDestroyed.AddUniqueDynamic(this, &ThisClass::OnEnemyDestroyed);
+
 				EnemiesSpawnedThisTime++;
 				TotalSpawnedEnemiesThisWaveCounter++;
 			}
@@ -183,4 +187,21 @@ int32 AWarriorSurvivalGameMode::TrySpawnWaveEnemies()
 bool AWarriorSurvivalGameMode::ShouldKeepSpawnEnemies() const
 {
 	return TotalSpawnedEnemiesThisWaveCounter < GetCurrentWaveSpawnerTableRow()->TotalEnemyToSpawnThisWave;
+}
+
+void AWarriorSurvivalGameMode::OnEnemyDestroy(AActor* DestroyedActor)
+{
+	CurrentSpawnedEnemiesCounter--;
+
+	if (ShouldKeepSpawnEnemies())
+	{
+		CurrentSpawnedEnemiesCounter += TrySpawnWaveEnemies();
+	}
+	else if (CurrentSpawnedEnemiesCounter == 0)
+	{
+		TotalSpawnedEnemiesThisWaveCounter = 0;
+		CurrentSpawnedEnemiesCounter = 0;
+
+		SetCurrentSurvivalGameModeState(EWarriorSurvivalGameModeState::WaveCompleted);
+	}
 }
