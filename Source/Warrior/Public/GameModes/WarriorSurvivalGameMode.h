@@ -70,7 +70,7 @@ private:
 	bool ShouldKeepSpawnEnemies() const;
 
 	UFUNCTION()
-	void OnEnemyDestroy(AActor* DestroyedActor);
+	void OnEnemyDestroyed(AActor* DestroyedActor);
 
 	UPROPERTY()
 	EWarriorSurvivalGameModeState CurrentSurvivalGameModeState;
