@@ -3,7 +3,7 @@
 
 #include "WarriorGameInstance.h"
 
-TSoftObjectPtr<UWorld> UWarriorGameInstance::GetGameLevelByTag(FGameplayTag InTag)
+TSoftObjectPtr<UWorld> UWarriorGameInstance::GetGameLevelByTag(FGameplayTag InTag) const
 {
 	for (const FWarriorGameLevelSet& GameLevelSet : GameLevelSets)
 	{
@@ -15,5 +15,5 @@ TSoftObjectPtr<UWorld> UWarriorGameInstance::GetGameLevelByTag(FGameplayTag InTa
 		}
 	}
 
-	TSoftObjectPtr<UWorld>();
+	return TSoftObjectPtr<UWorld>();
 }

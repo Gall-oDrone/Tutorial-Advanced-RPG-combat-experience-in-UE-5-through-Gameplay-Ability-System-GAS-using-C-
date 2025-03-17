@@ -16,9 +16,9 @@ struct FWarriorGameLevelSet
 	FGameplayTag LevelTag;
 
 	UPROPERTY(EditDefaultsOnly)
-	TSoftObjectPointer<UWorld> Level;
+	TSoftObjectPtr<UWorld> Level;
 
-	bool IsValid() const;
+	bool IsValid() const
 	{
 		return LevelTag.IsValid() && !Level.IsNull();
 	}
@@ -36,6 +36,6 @@ protected:
 	TArray<FWarriorGameLevelSet> GameLevelSets;
 
 public:
-	UFUNCTION(BlueprintCallable, meta = (GameplayTagFilter="GameData.Level"))
-	TSoftObjectPtr<UWorld> GetGameLevelByTag(FGameplayTag InTag);
+	UFUNCTION(BlueprintPure, meta = (GameplayTagFilter="GameData.Level"))
+	TSoftObjectPtr<UWorld> GetGameLevelByTag(FGameplayTag InTag) const;
 };
